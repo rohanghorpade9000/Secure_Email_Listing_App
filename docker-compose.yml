@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  easeworkai_mongo:
+    image: mongo:latest
+    container_name: Easeworkai_mongo
+    restart: always
+    ports:
+      - "27019:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: easeworkai_admin
+      MONGO_INITDB_ROOT_PASSWORD: easeworkai_password
+      MONGO_INITDB_DATABASE: easeworkai_db
+    command: ["mongod", "--auth"]
+    volumes:
+      - easeworkai_mongo_data:/data/db  # Ensure a named volume is used
+
+volumes:
+  easeworkai_mongo_data:  # Declare the volume explicitly
